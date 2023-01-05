@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form method="post" action="submit.html" onSubmit="return validate_form()">
+            <label for="">Date of Birth</label>
+            <input type="date" name="" id="dob">
+            <br>
+
+            <label for="">Date of Joining</label>
+            <input type="date" id="doj">
+            <br>
+
+            <label for="">salary:</label>
+            <input type="number" name="" id="salary">
+            <br>
+
+            <input type="submit">
+        </form>
+        <script>
+            function validate_form(){
+                var dob = document.getElementById('dob').value
+                dob = new Date(dob);
+
+                var doj = document.getElementById('doj').value 
+                doj=new Date(doj)
+
+                var salary = document.getElementById('salary').value
+
+                curr_date = new Date();
+
+                if(dob >= curr_date){
+                    alert("Invalid Date of birth")
+                    return false;
+                }else if(doj <= dob){
+                    alert("Invalid date of joining")
+                    return false;
+                }else if(salary <= 0){
+                    alert("Invalid salary")
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </div>
+</body>
+</html>

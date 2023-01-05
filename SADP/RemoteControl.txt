@@ -1,0 +1,74 @@
+import java.io.*;
+#main.java
+public class Main {
+	public static void main(String[] args) {
+		RemoteControl remoteControl = new RemoteControl();
+		System.out.println(remoteControl);
+		remoteControl.onButtonWasPushed(0);
+		remoteControl.offButtonWasPushed(0);
+		remoteControl.onButtonWasPushed(1);
+		remoteControl.offButtonWasPushed(1);
+		remoteControl.onButtonWasPushed(2);
+		remoteControl.offButtonWasPushed(2);
+		remoteControl.onButtonWasPushed(3);
+		remoteControl.offButtonWasPushed(3);
+	}
+}
+ #Command.java
+public interface Command {
+	public void execute();
+}
+
+#NoCommand.java
+public class NoCommand implements Command {
+	public void execute() {
+	}
+}
+
+#RemoteControl.java
+public class RemoteControl {
+
+  Command[] onCommands;
+  Command[] offCommands;
+
+  public RemoteControl() {
+    onCommands = new Command[7];
+    offCommands = new Command[7];
+    Command noCommand = new NoCommand();
+    for (int i = 0; i < 7; i++) {
+      onCommands[i] = noCommand;
+      offCommands[i] = noCommand;
+    }
+  }
+
+  public void setCommand(int slot, Command onCommand, Command offCommand) {
+    onCommands[slot] = onCommand;
+    offCommands[slot] = offCommand;
+  }
+
+  public void onButtonWasPushed(int slot) {
+    onCommands[slot].execute();
+  }
+
+  public void offButtonWasPushed(int slot) {
+    offCommands[slot].execute();
+  }
+
+  public String toString() {
+    StringBuffer stringBuff = new StringBuffer();
+    stringBuff.append("\n------ Remote Control -------\n");
+    for (int i = 0; i < onCommands.length; i++) {
+      stringBuff.append(
+        "[slot " +
+        i +
+        "] " +
+        onCommands[i].getClass().getName() +
+        " " +
+        offCommands[i].getClass().getName() +
+        "\n"
+      );
+    }
+    return stringBuff.toString();
+  }
+}
+

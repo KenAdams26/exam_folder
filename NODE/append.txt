@@ -1,0 +1,7 @@
+var fs = require("fs");
+var data = "Patil";
+
+fs.appendFile("./demo.txt", data, function (err) {
+  if (err) throw err;
+  console.log("Successfully append");
+});

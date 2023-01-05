@@ -1,0 +1,17 @@
+var mysql = require('mysql');
+var con =mysql.createConnection({
+    host:"localhost",
+    user:"root",
+    password:"",
+    database:"mydatabase"
+   
+});
+con.connect(function(err){
+    if(err) throw err;
+    console.log("Connected") ;
+     con.query("create table table1(name varchar(20), addr varchar(20))" ,function(err){
+con.quiery
+   if(err) throw err;
+    console.log("table ctreateed");
+    });
+});
